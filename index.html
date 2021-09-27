@@ -1,0 +1,99 @@
+<!-----------------------------------------------------------
+  _____      ______      __       ____       ____       _
+||     \\   | _____|    //\\     | ___\\   / ____|    // \\
+||      \\  ||__       //  \\    ||    || | |___    / /   \ \
+||       || | __|     //____\\   ||___//   \ ____\ | |     | |
+||      //  ||_____  //      \\  || \\     _____ || \ \   / /
+||_____//   |______|//        \\ ||   \\  |_____ /    \\_//
+
+Author: Sophia Kiani
+Date: 09/16/2021
+Purpose: First draft of profolio
+------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <title>Sophk Fun Quiz</title>
+    <link rel="icon" href="./assets/images/favicon.jpg">
+    <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <!--Navbar Section--> 
+    <nav class="nav_section">
+      <ul>
+        <li>
+          <a href="./index.html">HOME</a>
+        </li>
+        <li>
+          <a href="#start">START</a>
+        </li>
+        <li>
+          <a href="#contact">CONTACT</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!--Main Quiz Container--> 
+    <section class="background">
+      <div class="title_header"><p>DearSO Fun Quiz</p></div>
+      <div class="quiz_background">
+
+        <div id="info_container" class="info_container hidden">
+          <div class="timer"></div>
+          <div class="counter"></div>
+          <div class="score"></div>
+        </div>
+
+        <div id="quiz_container" class="quiz_container hidden">
+          <div id="question_container">
+            <div class="question_prefix">Question: </div>
+            <div class="question"></div>
+          </div>
+          <div class="answer_container">
+            <p class="answer_prefix">1. </p>
+            <button class="answer_button" data-number="1"></button>
+          </div>
+          <div class="answer_container">
+            <p class="answer_prefix">2. </p>
+            <button class="answer_button" data-number="2"></button>
+          </div>
+          <div class="answer_container">
+            <p class="answer_prefix">3. </p>
+            <button class="answer_button" data-number="3"></button>
+          </div>
+          <div class="answer_container">
+            <p class="answer_prefix">4. </p>
+            <button class="answer_button" data-number="4"></button>
+          </div>
+          <div class="answer_container">
+            <p class="answer_prefix">5. </p>
+            <button class="answer_button" data-number="5"></button>
+          </div>
+        </div>
+
+        <div class="welcome"><h2>Welcome to DearSo Fun Quiz! This quiz contains 5 questions that must be answered within 80 seconds. When you are ready press start.</h2></div>
+        <div class="start"><button class="start_button">START</button></div>
+      </div>
+    </section>
+
+    <!--Footer/Contact Section-->
+    <footer id="contact">
+      <ul>
+        <li>Email: <a href="mailto:pcdearso@gmail.com">pcdearso@gmail.com</a></li>
+        <li>© 2021 DearSo Company</li>
+        <li>Github: <a href="https://github.com/Soph-K" target="_blank">Check Me Out</a></li>
+      </ul> 
+    </footer>
+
+    <!--Javascript Section-->
+    <script src="./assets/js/main.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,407 @@
+/*************************************************************************
+  _____      ______      __       ____       ____       _
+||     \\   | _____|    //\\     | ___\\   / ____|    // \\
+||      \\  ||__       //  \\    ||    || | |___    / /   \ \
+||       || | __|     //____\\   ||___//   \ ____\ | |     | |
+||      //  ||_____  //      \\  || \\     _____ || \ \   / /
+||_____//   |______|//        \\ ||   \\  |_____ /    \\_//
+
+Author: DearSO
+GitHub: https://github.com/soph-k
+Description: DearSO Portfolio
+
+CSS TABLE OF CONTENTS
+    ===== Base ====
+        |-- 1.0 - Reset
+        |-- 2.0 - Gobal
+        |-- 3.0 - Navbar
+        |-- 4.0 - About
+        |-- 5.0 - Project
+        |-- 6.0 - Footer
+        |-- 7.0 - Responsive
+
+*************************************************************************/
+
+
+
+/*************************** 1.0 - Reset *************************/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/********************** 2.0 - Global ***********************/
+* {
+  font-family: "QuickSand";
+  box-sizing: border-box; 
+  padding: 0;
+  margin:0; 
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  background: rgb(252, 246, 249);
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/******************* 3.0 - Navbar *************************/
+nav { 
+  position: sticky;
+  z-index: 100;
+  background-image:linear-gradient(to top, rgb(255, 255, 255) , rgb(168, 144, 160));
+  border-right: rgb(3, 3, 3) .55em solid;
+  border-left: rgb(3, 3, 3) .55em solid;
+  border-bottom: rgb(3, 3, 3) .15em solid;
+  top: 0;
+  height: 4em;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav li  {
+  padding: .2em 2.5em;
+  margin: 1.5em 1em;
+  font-size: 1.2em;
+  border:rgba(20, 20, 20, 0) solid 2px;
+}
+
+nav a:link, a:visited {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  text-align: center;
+}
+
+nav a:hover, a:active {
+  text-decoration: underline;
+}
+
+
+/************************ 4.0 - About ********************/
+.background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 30em;
+  background-image: url(../images/body.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1em 2em;
+  background-color: rgba(0, 0, 0, 0.349);
+  background-blend-mode: multiply;
+}
+
+/* The two selectors below add style to the name area*/
+.title_header {
+  padding: 0 0 0 3em;
+  background-image:linear-gradient(to right, rgba(255, 255, 255, 0.925) , rgb(168, 144, 160));
+  border-radius: 10%;
+  border-top: 1px black solid;
+  border-bottom: 10px black solid; 
+  width: 80%;
+  margin: 4em auto 2em;
+}
+
+.title_header p {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: 100;
+  padding: .3em 1em .3em 1em;
+}
+
+.quiz_background {
+  position: relative;
+  background-color: rgba(236, 228, 233, 0.884);
+  border-radius: 10%;
+  border-top:rgb(0, 0, 0) 2px solid;
+  border-bottom:rgb(0, 0, 0) .95em solid; 
+  min-height: 40em;
+  width: 70%;
+  margin: 2em auto 2em;
+  padding: 2em 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.quiz_background h2 {
+  padding: 2em 3em 1em;
+  font-size: 1.5em;
+  font-weight: 400;
+  line-height: 2;
+  text-align: center;
+}
+
+.welcome {
+  width: 90%;
+  justify-content: center;
+}
+
+.start {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.start_button {
+  justify-items: center;
+  font-size: 1.2em;
+  background-color: rgba(255, 255, 255, 0.959);
+  text-align: center;
+  padding: .4em 2em;
+  width: 40%;
+  border-radius: 10%;
+  border-bottom: 10px black solid;
+}
+
+.start_button:hover {
+  background-color: rgb(221, 212, 221);
+  cursor: pointer;
+}
+
+.info_container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.timer .counter .score {
+  font-size: 1.2em;
+  width: 33.3%;
+  justify-content: center;
+  border-radius: 10%;
+  border-bottom: 4px black solid;
+  font-weight:600;
+}
+
+.quiz_container {
+  width: 100%;
+}
+
+#question_container {
+  display:flex;
+  bottom: 0;
+  margin: 2em 1em 0em;
+}
+
+.question_prefix {
+  flex-direction: column;
+  flex-wrap:wrap;
+  width: 25%;
+  font-size: 1.5em;
+  font-weight: 700;
+  align-content: center;
+  justify-content: flex-end;
+}
+
+.question {
+  flex-direction: column;
+  flex-wrap:wrap;
+  width: 75%;
+  justify-content: flex-start;
+  align-content: center;
+  font-size: 1.4em;
+}
+
+.answer_container {
+  font-size: 1em;
+  background-color: rgba(255, 255, 255, 0.9592);
+  /* background-image:linear-gradient(to right, rgb(255, 255, 255) , rgb(168, 144, 160)); */
+  padding: .3em 1em;
+  border-radius: 10%;
+  border-bottom: 7px black solid;
+  width: 90%;
+  text-align:left;
+  height: 2.2em;
+  margin:1em.7em;
+  display: flex;
+  display: column;
+}
+
+.answer_button {
+  justify-content: flex-start;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
+  background-color: transparent;
+}
+
+.answer_container:hover {
+  background-color: rgb(221, 212, 221);
+  cursor: pointer;
+}
+
+.correct {
+  background-color: rgb(20, 220, 153);
+}
+
+.incorrect {
+  background-color: crimson;
+}
+
+.hidden {
+  display: none;
+}
+
+/************************ 6.0 - Footer ********************/
+footer {
+  background-image:linear-gradient(to bottom, rgb(255, 255, 255) , rgb(168, 144, 160));
+  border-top: rgb(3, 3, 3) 0.15em solid;
+  border-right: rgb(3, 3, 3) .5em solid;
+  border-left: rgb(3, 3, 3) .5em solid;
+  width: 100%;
+  height: 2.8em;
+  padding: 0;
+  bottom: 0;
+  position: sticky;
+  justify-content: space-evenly;
+}
+
+footer ul {
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  position: relative;
+  justify-content: space-evenly;
+  color: rgb(0, 0, 0);
+  font-size: 1.05em;
+  padding: 1em .5em .5em .5em ;
+}
+
+footer a:link, a:visited {
+  color: rgb(14, 32, 48);
+  text-decoration: none;
+  text-align: center;
+}
+
+footer a:hover, a:active {
+  background-color: rgba(255, 255, 255, 0);
+  text-decoration: underline black 2px;
+}
+
+
+/*********************** 7.0 Responsive *******************/
+
+@media screen and (max-width:1100px) { /*Changes styling at a screen width of 1100px*/
+  nav {
+    height: 7em;
+  }
+
+  nav ul {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav li {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+  }
+
+  .nav_section {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  nav img {
+    display:none;
+  }
+
+  #about {
+    height: 60em;
+  }
+
+  .about_container_main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about_container_section {
+    width: 100%;
+    margin: 1.5em 0;
+  }
+
+  footer{
+    height: 6.5em;
+  }
+
+  footer ul {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  footer li {
+    display:flex;
+    padding: .25em;
+    justify-content: center;
+  }
+}
+
