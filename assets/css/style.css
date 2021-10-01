@@ -8,7 +8,7 @@
 
 Author: DearSO
 GitHub: https://github.com/soph-k
-Description: DearSO Portfolio
+Description: Sophk_Fun_Quiz
 
 CSS TABLE OF CONTENTS
     ===== Base ====
@@ -224,6 +224,7 @@ nav a:hover, a:active {
   display: flex;
   flex-direction: row;
   width: 100%;
+  justify-content: space-between;
 }
 
 .timer .counter .score {
@@ -293,12 +294,21 @@ nav a:hover, a:active {
   cursor: pointer;
 }
 
+.answer_container:active {
+  box-shadow: 0 4px rgb(53, 51, 51);
+  transform: translateY(2px);
+  cursor: pointer;
+}
 .correct {
   background-color: rgb(20, 220, 153);
 }
 
 .incorrect {
   background-color: crimson;
+}
+
+#scoreboard_container {
+
 }
 
 .hidden {

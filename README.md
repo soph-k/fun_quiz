@@ -1,14 +1,26 @@
+  _____      ______      __       ____       ____       _
+||     \\   | _____|    //\\     | ___\\   / ____|    // \\
+||      \\  ||__       //  \\    ||    || | |___    / /   \ \
+||       || | __|     //____\\   ||___//   \ ____\ | |     | |
+||      //  ||_____  //      \\  || \\     _____ || \ \   / /
+||_____//   |______|//        \\ ||   \\  |_____ /    \\_//
+
+Author: DearSO
+GitHub: https://github.com/soph-k
+Description: Sophk_Fun_Quiz
+
 # sophk_fun_quiz
-Created a fun simple quiz from basic javascript css and html.
+    Created a fun simple quiz from basic javascript css and html.
 
 
 # Fun Quiz 
 
-    This file contains the basic html, css, and js files for a webpage that contains 5 short randomized question, 
+    This file contains basic html, css, and js files for a webpage that contains 5 short randomized question, 
     include naviagtion bar, timer, scoreboard, and score based on correct and incorrect answers. 
 
 
 # Authors
+
     Sophia Kiani 
     Version 1.1
 
@@ -17,7 +29,6 @@ Created a fun simple quiz from basic javascript css and html.
 `
     ![Preview Of Sophk Fun Quiz webpage](./assets/images/sophk_fun_quiz_screenshot.png)
 
-
     
 # Link
 `
@@ -25,8 +36,6 @@ Created a fun simple quiz from basic javascript css and html.
     [Or check out the GitHub repository for the Sophk Fun Quiz webpage](https://github.com/soph-k/sophk_fun_quiz/) 
     
  
-
-
 # Bugs
 
-    There are currently no known bugs within this file, however, it is not a functional webpage yet.
+    There are currently no known bugs within this file.

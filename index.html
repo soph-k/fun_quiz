@@ -8,7 +8,7 @@
 
 Author: Sophia Kiani
 Date: 09/16/2021
-Purpose: First draft of profolio
+Description: sophk_fun_quiz
 ------------------------------------------------------------->
 
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ Purpose: First draft of profolio
           <a href="./index.html">HOME</a>
         </li>
         <li>
-          <a href="#start">START</a>
+          <a href="./index.html">START</a>
         </li>
         <li>
           <a href="#contact">CONTACT</a>
@@ -43,8 +43,17 @@ Purpose: First draft of profolio
     <!--Main Quiz Container--> 
     <section class="background">
       <div class="title_header"><p>DearSO Fun Quiz</p></div>
+      
       <div class="quiz_background">
 
+        <div class="welcome">
+          <h2>Welcome to DearSo Fun Quiz! This quiz contains 5 questions that must be answered within 80 seconds. 
+              When you are ready press start.</h2>
+        </div>
+        <div class="start">
+          <button class="start_button">START</button>
+        </div>
+        
         <div id="info_container" class="info_container hidden">
           <div class="timer"></div>
           <div class="counter"></div>
@@ -77,10 +86,20 @@ Purpose: First draft of profolio
             <button class="answer_button" data-number="5"></button>
           </div>
         </div>
-
-        <div class="welcome"><h2>Welcome to DearSo Fun Quiz! This quiz contains 5 questions that must be answered within 80 seconds. When you are ready press start.</h2></div>
-        <div class="start"><button class="start_button">START</button></div>
+      
+        <div id="scoreboard_container" class="scoreboard_container hidden"> 
+          <div>
+            <p>Congraulations! You have completed the quiz.</p>
+          </div>
+          <div class="scorboard_score">
+            <p>Score: </p>
+          </div>
+          <div class="scoreboard_restart">
+            <button class="restart_button">Play Again</button>
+          </div>
+        </div>
       </div>
+
     </section>
 
     <!--Footer/Contact Section-->
