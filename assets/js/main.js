@@ -98,7 +98,7 @@ let questions = [
   },
 ];
 
-Question Variables 
+// Question Variables 
 const questionArray = [... questions];
 const shuffledQuestions = Math.floor(Math.random() * questions.length);
 
