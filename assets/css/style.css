@@ -75,37 +75,28 @@ table {
 
 
 /********************** 2.0 - Global ***********************/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@100&display=swap');
+
 * {
-  font-family: "QuickSand";
+  font-family: "Quicksand", sans-serif;
   box-sizing: border-box; 
   padding: 0;
   margin:0; 
 }
 
-html {
-  width: 100%;
-  height: 100%;
-  background: rgb(252, 246, 249);
-  margin: 0;
-  padding: 0;
-}
-
 body {
   height: 100%;
-  margin: 0;
-  padding: 0;
 }
+
 
 /******************* 3.0 - Navbar *************************/
 nav { 
-  position: sticky;
-  z-index: 100;
   background-image:linear-gradient(to top, rgb(255, 255, 255) , rgb(168, 144, 160));
   border-right: rgb(3, 3, 3) .55em solid;
   border-left: rgb(3, 3, 3) .55em solid;
   border-bottom: rgb(3, 3, 3) .15em solid;
   top: 0;
-  height: 4em;
+  height: 3.5em;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -120,7 +111,7 @@ nav ul {
 nav li  {
   padding: .2em 2.5em;
   margin: 1.5em 1em;
-  font-size: 1.2em;
+  font-size: 1.1em;
   border:rgba(20, 20, 20, 0) solid 2px;
 }
 
@@ -131,99 +122,88 @@ nav a:link, a:visited {
 }
 
 nav a:hover, a:active {
-  text-decoration: underline;
+  text-decoration: underline 2px black solid;
 }
 
 
 /************************ 4.0 - About ********************/
 .background {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 30em;
-  background-image: url(../images/body.jpg);
+  height: 100vh;
+  background-image: url(../images/home_1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 1em 2em;
-  background-color: rgba(0, 0, 0, 0.349);
-  background-blend-mode: multiply;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.main_container {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 /* The two selectors below add style to the name area*/
 .title_header {
-  padding: 0 0 0 3em;
   background-image:linear-gradient(to right, rgba(255, 255, 255, 0.925) , rgb(168, 144, 160));
-  border-radius: 10%;
-  border-top: 1px black solid;
-  border-bottom: 10px black solid; 
-  width: 80%;
-  margin: 4em auto 2em;
+  border-radius: 20px;
+  border-top: .5px black solid;
+  border-bottom: 5px black solid; 
+  width: 70%;
+  margin: 3em auto 2em;
 }
 
 .title_header p {
   text-align: center;
-  font-size: 1.8em;
+  font-size: 1.6em;
   font-weight: 100;
   padding: .3em 1em .3em 1em;
 }
 
 .quiz_background {
-  position: relative;
-  background-color: rgba(236, 228, 233, 0.884);
-  border-radius: 10%;
-  border-top:rgb(0, 0, 0) 2px solid;
-  border-bottom:rgb(0, 0, 0) .95em solid; 
-  min-height: 40em;
+  background-color: rgba(236, 228, 233, 0.918);
+  border-radius: 40px;
+  border-top:rgb(0, 0, 0) 1px solid;
+  border-bottom:rgb(0, 0, 0) 5px solid; 
+  height: 33em;
   width: 70%;
   margin: 2em auto 2em;
   padding: 2em 1em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
 }
 
-.quiz_background h2 {
-  padding: 2em 3em 1em;
-  font-size: 1.5em;
-  font-weight: 400;
-  line-height: 2;
+.welcome_container {
+  justify-content: center;
+  height: 100%;
   text-align: center;
-}
-
-.welcome {
-  width: 90%;
-  justify-content: center;
-}
-
-.start {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-content: center;
   align-items: center;
 }
 
-.start_button {
-  justify-items: center;
-  font-size: 1.2em;
-  background-color: rgba(255, 255, 255, 0.959);
-  text-align: center;
-  padding: .4em 2em;
-  width: 40%;
-  border-radius: 10%;
-  border-bottom: 10px black solid;
+.welcome {
+  padding: 4em 3em 1em;
+  font-size: 1.5em;
+  font-weight: 200;
+  line-height: 2;
 }
 
-.start_button:hover {
-  background-color: rgb(221, 212, 221);
+
+.start_btn, .restart_btn {
+  font-size: 1.2em;
+  background-color: rgba(255, 255, 255, 0.959);
+  padding: .4em 2em;
+  width: 40%;
+  border-radius: 15px;
+  border-bottom: 4px black solid;
+}
+
+.btn_hover:hover {
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.801);
   cursor: pointer;
 }
 
 .info_container {
-  position: relative;
-  display: flex;
-  flex-direction: row;
+  padding: 2em 1em;
   width: 100%;
+  display: flex;
   justify-content: space-between;
 }
 
@@ -236,10 +216,6 @@ nav a:hover, a:active {
   font-weight:600;
 }
 
-.quiz_container {
-  width: 100%;
-}
-
 #question_container {
   display:flex;
   bottom: 0;
@@ -248,7 +224,7 @@ nav a:hover, a:active {
 
 .question_prefix {
   flex-direction: column;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   width: 25%;
   font-size: 1.5em;
   font-weight: 700;
@@ -266,39 +242,27 @@ nav a:hover, a:active {
 }
 
 .answer_container {
+  display: flex;
   font-size: 1em;
   background-color: rgba(255, 255, 255, 0.9592);
-  /* background-image:linear-gradient(to right, rgb(255, 255, 255) , rgb(168, 144, 160)); */
-  padding: .3em 1em;
-  border-radius: 10%;
-  border-bottom: 7px black solid;
+  padding: 0em 1em;
+  border-radius: 10px;
+  border-bottom: 3px black solid;
   width: 90%;
   text-align:left;
-  height: 2.2em;
+  height: 3em;
   margin:1em.7em;
-  display: flex;
-  display: column;
+  align-items: center;
 }
 
 .answer_button {
-  justify-content: flex-start;
-  border: 0;
+  border: none;
   width: 100%;
   height: 100%;
   font-size: 1em;
   background-color: transparent;
 }
 
-.answer_container:hover {
-  background-color: rgb(221, 212, 221);
-  cursor: pointer;
-}
-
-.answer_container:active {
-  box-shadow: 0 4px rgb(53, 51, 51);
-  transform: translateY(2px);
-  cursor: pointer;
-}
 .correct {
   background-color: rgb(20, 220, 153);
 }
@@ -307,13 +271,25 @@ nav a:hover, a:active {
   background-color: crimson;
 }
 
-#scoreboard_container {
-
-}
-
 .hidden {
   display: none;
 }
+
+.scoreboard {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+
+}
+.final_message {
+  padding: 0 auto 2em;
+  font-size: 1.6em;
+  margin-bottom: 2em;
+}
+
+
 
 /************************ 6.0 - Footer ********************/
 footer {
@@ -323,9 +299,8 @@ footer {
   border-left: rgb(3, 3, 3) .5em solid;
   width: 100%;
   height: 2.8em;
-  padding: 0;
+  position: absolute;
   bottom: 0;
-  position: sticky;
   justify-content: space-evenly;
 }
 
@@ -357,7 +332,7 @@ footer a:hover, a:active {
 
 @media screen and (max-width:1100px) { /*Changes styling at a screen width of 1100px*/
   nav {
-    height: 7em;
+    height: 6.5em;
   }
 
   nav ul {
@@ -397,7 +372,7 @@ footer a:hover, a:active {
   }
 
   footer{
-    height: 6.5em;
+    height: 6.2em;
   }
 
   footer ul {

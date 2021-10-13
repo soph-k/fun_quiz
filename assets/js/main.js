@@ -12,29 +12,25 @@
 
 
 ///////////////////////////////// Selectors ////////////////////////////
-// Home Page Selectors
-const  welcomeContainer = document.querySelector(".welcome");
-const  startButtonEl = document.querySelector(".start_button");
+// Welcome 
+const welcomeContainer = $(".welcome_container");
+const startButtonEl = $(".start_btn")
 
-// Info Container
-const  infoContainer = document.querySelector("#info_container");
-// Info Selector
-const timerEl = document.querySelector(".timer");
-const scoreboardEl = document.querySelector(".score");
-const counterEl = document.querySelector(".counter");
+// Quiz Started 
+const quizStartedContainer = $(".started_container");
+const infoContainer = $(".info_container");
+const timerEl = $(".timer");
+const scoreboardEl = $(".score");
+const counterEl = $(".counter");
 
-// Quiz Container
-const  quizContainer = document.querySelector("#quiz_container");
 // Quiz Selector
-const questionEl = document.querySelector(".question");
-const answerContainer = document.querySelector(".answer_container");
+const questionEl = $(".question");
+const answerContainer = $(".answer_container");
 const answerEl = Array.from(document.getElementsByClassName("answer_button"));
-const  correctEl = document.querySelector(".correct");
-const  incorrectEl = document.querySelector(".incorrect");
 
 // Scoreboard Container
-const scoreboardContainer = document.querySelector("#scoreboard_container");
-const restartButtonEl = document.querySelector(".restart_button");
+const scoreboardContainer = $(".scoreboard_container");
+const restartButtonEl = $(".restart_btn");
 // const enterInitalEl = document.querySelector();
 // const saveButtonEl = document.querySelector();
 // const finalScoreEl = document.querySelector("")
@@ -43,10 +39,15 @@ const restartButtonEl = document.querySelector(".restart_button");
 // const addScore = { scores: lastScore, name: username.value };
 
 
+const inputInitalEl = $("#enter_initals");
+// const inputScoreEl = $(".");
+const submitBtn = $("#submit_btn");
+const highScoreEl = $("#highscore_output");
+
 // Global Variables
 let score = 0;
 let counter = 0
-let timeRemaining = 80;
+let timeRemaining = 180;
 
 
 // Question Array
@@ -98,48 +99,40 @@ let questions = [
   },
 ];
 
-// Question Variables 
-const questionArray = [... questions];
-const shuffledQuestions = Math.floor(Math.random() * questions.length);
-
-const questionIndex = 0;
-const currentQuestion = questionArray[shuffledQuestions];
+// Question Variables
+const questionArray = [... questions]; 
+let currentQuestion;
 
 
 ///////////////////////////////// Functions ////////////////////////////
 // Start Quiz Function, after start button is pressed
 function startQuiz () {
   score = 0;
-  counter = 0
-  timeRemaining = 80;
-  startButtonEl.classList.add('hidden');
-  welcomeContainer.classList.add('hidden');
-  infoContainer.classList.remove('hidden');
-  quizContainer.classList.remove('hidden');
-  scoreboardContainer.classList.add('hidden');
+  counter = 0;
+  timeRemaining = 180;
+  quizStartedContainer.removeClass('hidden');
+  welcomeContainer.addClass('hidden');
+  scoreboardContainer.addClass('hidden')
   generateQuestions ();
   startTimer ();
   startScoreBoard (); 
 }
 
-
-// function nextQuestion () {
-//   generateQuestions(questions[questionIndex])
-//   if(questions.length > questionIndex + 1) {
-//     displayScoreBoard ();
-//   }
-
-// }
-
-
 // Start Quiz Function, after start button is pressed
-function generateQuestions (currentQuestion) {
+function generateQuestions () {
+  const shuffledQuestions = Math.floor(Math.random() * questionArray.length);
+  currentQuestion = questionArray[shuffledQuestions];
   questionEl.innerText = currentQuestion.question;
   answerEl.forEach(option => {
     const answerNumber = option.dataset['number'];
     option.innerText = currentQuestion['option'+ answerNumber];
   });
-  startCounter ();
+  questionArray.splice[shuffledQuestions, 1]
+}
+
+function startScoreBoard () {
+  score ;
+  scoreboardEl.textContent = "Score: " + score;
 }
 
 // Start Quiz Function, after start button is pressed
@@ -149,55 +142,68 @@ function startTimer () {
   timerEl.textContent = "Timer: " + timeRemaining;
   if (timeRemaining <= 0) {
     timeRemaining = 0;
+    timerEl.textContent = "Timer: " + timeRemaining
     clearInterval(timerInterval);
-    alert("You Are Out of Time!");
     displayScoreBoard();
-  }
-  }, 1000);
+  }}, 1000);
 }
 
-
-function startCounter() {
-  counter ++
-  if(counter === 6) {
-    return displayScoreBoard ();
-  }
-  if (counter > 5) {
-    counter = 0;
+function startCounter () {
   counterEl.innerText = "Question: " + counter + "/" + 5;
+  if(counter <= 4) {
+    generateQuestions (); 
+  }
+  else {
+    displayScoreBoard ();
+  }
+    if (counter > 5) {
+      counter = 5;
+    counterEl.innerText = "Question: " + counter + "/" + 5;
+    } 
 }
-}
-  
-
-function startScoreBoard () {
-  score;
-  scoreboardEl.textContent = "Score: " + score;
-};
-
 
 // Start Quiz Function, after start button is pressed
 function displayScoreBoard () {
-  scoreboardContainer.classList.remove('hidden')
-  quizContainer.classList.add('hidden');
+  scoreboardContainer.removeClass('hidden');
+  quizStartedContainer.addClass('hidden');
 }
 
-// function highScores (event) {
-//   event.preventDefault ();
+function highScores (event) {
+  event.preventDefault ();
 
-//   finalScoreEl.innerText = finalScoreStorage;
+  finalScoreEl.innerText = finalScoreStorage;
 
-//   addScore;
+  addScore;
 
-//   highScoresEl.sort((a,b) => b.score - a.score)
-//   highScoresEl.splice(15);
+  highScoresEl.sort((a,b) => b.score - a.score)
+  highScoresEl.splice(15);
 
-//   localStorage.setItem("highScoresEl", JSON.stringify(highScoresEl));
-// };
+  localStorage.setItem("highScoresEl", JSON.stringify(highScoresEl));
+};
+
+function addInitals (event) {
+  event.preventDefault ();
+  const initalValue = inputInitalEl.val();
+  const scoreValue = inputScoreEl.val();
+
+  if (initalValue && scoreValue) {
+    localStorage.setItem()
+  }
+  localStorageLoop ();
+}
+
+function localStorageLoop () {
+  while(localStorage.length < 5) {
+    const initalValue = localStorage.initalValue(i);
+    const scoreValue = localStorage.getItem(initalValue);
+    highScoreEl.innerText += `${initalValue}: ${scoreValue}`;
+  }
+}
 
 
 
 // Evernt Listeners
-startButtonEl.addEventListener('click', startQuiz);
+startButtonEl.click(startQuiz);
 
 answerEl.forEach(option => {
   option.addEventListener('click', event => {
@@ -216,26 +222,15 @@ answerEl.forEach(option => {
           displayScoreBoard ();
         }
       }
-
-      // currentQuestion++;
-      // if (currentQuestion < questions.length) {
-      //   generateQuestions ();
-      // } else {
-      //   displayScoreBoard ();
-      // }
-
       setTimeout(() => {
         choosenOption.parentElement.classList.remove('correct');
         choosenOption.parentElement.classList.remove('incorrect');
-        
         generateQuestions ();
-      }, 1000);
+      }, 300);
   });
 });
 
+restartButtonEl.click(startQuiz);
 
-// enterInitalEl.addEventListener('keyup', () => { 
-// })
-
-restartButtonEl.addEventListener('click', startQuiz);
+submitBtn.click(localStorageLoop);
 

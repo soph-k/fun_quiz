@@ -15,16 +15,18 @@ Description: sophk_fun_quiz
 <html lang="en-US">
 
   <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>Sophk Fun Quiz</title>
-    <link rel="icon" href="./assets/images/favicon.jpg">
-    <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="background" >
     <!--Navbar Section--> 
     <nav class="nav_section">
       <ul>
@@ -41,66 +43,83 @@ Description: sophk_fun_quiz
     </nav>
 
     <!--Main Quiz Container--> 
-    <section class="background">
-      <div class="title_header"><p>DearSO Fun Quiz</p></div>
-      
+    <main class="main_container">
+      <div class="title_header"><p>SophK Fun Quiz</p></div>
       <div class="quiz_background">
-
-        <div class="welcome">
-          <h2>Welcome to DearSo Fun Quiz! This quiz contains 5 questions that must be answered within 80 seconds. 
-              When you are ready press start.</h2>
-        </div>
-        <div class="start">
-          <button class="start_button">START</button>
-        </div>
         
-        <div id="info_container" class="info_container hidden">
-          <div class="timer"></div>
-          <div class="counter"></div>
-          <div class="score"></div>
-        </div>
-
-        <div id="quiz_container" class="quiz_container hidden">
-          <div id="question_container">
-            <div class="question_prefix">Question: </div>
-            <div class="question"></div>
+        <div class="welcome_container">
+          <div class="welcome">
+            <h2>Welcome to DearSo Fun Quiz! This quiz contains 5 questions that must be answered within 80 seconds. 
+                When you are ready press start.</h2>
           </div>
-          <div class="answer_container">
-            <p class="answer_prefix">1. </p>
-            <button class="answer_button" data-number="1"></button>
-          </div>
-          <div class="answer_container">
-            <p class="answer_prefix">2. </p>
-            <button class="answer_button" data-number="2"></button>
-          </div>
-          <div class="answer_container">
-            <p class="answer_prefix">3. </p>
-            <button class="answer_button" data-number="3"></button>
-          </div>
-          <div class="answer_container">
-            <p class="answer_prefix">4. </p>
-            <button class="answer_button" data-number="4"></button>
-          </div>
-          <div class="answer_container">
-            <p class="answer_prefix">5. </p>
-            <button class="answer_button" data-number="5"></button>
+          <div class="start">
+            <button class="start_btn btn_hover">Start</button>
           </div>
         </div>
       
-        <div id="scoreboard_container" class="scoreboard_container hidden"> 
-          <div>
-            <p>Congraulations! You have completed the quiz.</p>
+        <div class="started_container hidden">
+          <div class="info_container">
+            <div class="timer">Value</div>
+            <div class="counter">Value</div>
+            <div class="score">Value</div>
           </div>
-          <div class="scorboard_score">
-            <p>Score: </p>
+          <div class="quiz_container">
+            <div class="question_container">
+              <span class="question_prefix">Question: </span>
+              <span class="question"></span>
+            </div>
+            <div class="answer_container btn_hover">
+              <p class="answer_prefix">1. </p>
+              <button class="answer_button " data-number="1"></button>
+            </div>
+            <div class="answer_container btn_hover">
+              <p class="answer_prefix">2. </p>
+              <button class="answer_button" data-number="2"></button>
+            </div>
+            <div class="answer_container btn_hover">
+              <p class="answer_prefix">3. </p>
+              <button class="answer_button" data-number="3"></button>
+            </div>
+            <div class="answer_container btn_hover">
+              <p class="answer_prefix">4. </p>
+              <button class="answer_button" data-number="4"></button>
+            </div>
+            <div class="answer_container btn_hover">
+              <p class="answer_prefix">5. </p>
+              <button class="answer_button" data-number="5"></button>
+            </div>
           </div>
-          <div class="scoreboard_restart">
-            <button class="restart_button">Play Again</button>
+        </div>  
+      
+        <div class="scoreboard_container hidden"> 
+          <div class="scoreboard">
+            <div class="final_message">
+              Congraulations! You have completed the quiz.
+            </div>
+            <div class="scorboard_score">
+              <div class="final_time">Value</div>
+              <div class="final_counter">Value</div>
+              <div class="final_score">Value</div>
+            </div>
+            <form class="submit_form">
+              <label for="enter_initals">Please enter your initals to save your score.</label><br>
+              <input type="text" id="enter_initals" name="enter_initals" value="Initals"><br>
+              <input type="submit" value="Submit" id="submit_btn">
+            </form>
+            <fieldset>
+              <label>
+                <div class="highscore_output">
+
+                </div>
+              </label>
+            </fieldset>
+            <div class="restart">
+              <button class="restart_btn btn_hover">Play Again</button>
+            </div>
           </div>
         </div>
       </div>
-
-    </section>
+    </main>
 
     <!--Footer/Contact Section-->
     <footer id="contact">
@@ -112,6 +131,12 @@ Description: sophk_fun_quiz
     </footer>
 
     <!--Javascript Section-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
     <script src="./assets/js/main.js"></script>
   </body>
 
