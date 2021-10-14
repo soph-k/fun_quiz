@@ -19,7 +19,7 @@ const startButtonEl = $(".start_btn")
 // Quiz Started 
 const quizStartedContainer = $(".started_container");
 const infoContainer = $(".info_container");
-var timerEl = $(".timer");
+const timerEl = $(".timer");
 const scoreboardEl = $(".score");
 const counterEl = $(".counter");
 
@@ -47,7 +47,7 @@ const highScoreEl = $("#highscore_output");
 // Global Variables
 let score = 0;
 let counter = 0
-let timeRemaining = 180;
+let timeRemaining = 80;
 
 
 // Question Array
@@ -109,20 +109,22 @@ let currentQuestion;
 function startQuiz () {
   score = 0;
   counter = 0;
-  timeRemaining = 180;
+  timeRemaining = 80;
   quizStartedContainer.removeClass('hidden');
   welcomeContainer.addClass('hidden');
   scoreboardContainer.addClass('hidden')
   generateQuestions ();
   startTimer ();
   startScoreBoard (); 
+  startCounter ();
 }
+
 
 // Start Quiz Function, after start button is pressed
 function generateQuestions () {
   const shuffledQuestions = Math.floor(Math.random() * questionArray.length);
   currentQuestion = questionArray[shuffledQuestions];
-  questionEl.innerText = currentQuestion.question;
+  questionEl.text(currentQuestion.question);
   answerEl.forEach(option => {
     const answerNumber = option.dataset['number'];
     option.innerText = currentQuestion['option'+ answerNumber];
@@ -130,16 +132,17 @@ function generateQuestions () {
   questionArray.splice[shuffledQuestions, 1]
 }
 
+
 function startScoreBoard () {
-  score ;
-  scoreboardEl.textContent = "Score: " + score;
+  scoreboardEl.text("Score: " + score);
 }
+
 
 // Start Quiz Function, after start button is pressed
 function startTimer () {
   let timerInterval = setInterval(function () {
   timeRemaining--;
-  timerEl.textContent = "Timer: " + timeRemaining;
+  timerEl.text("Timer: " + timeRemaining);
   if (timeRemaining <= 0) {
     timeRemaining = 0;
     timerEl.textContent = "Timer: " + timeRemaining
@@ -148,8 +151,9 @@ function startTimer () {
   }}, 1000);
 }
 
+
 function startCounter () {
-  counterEl.innerText = "Question: " + counter + "/" + 5;
+  counterEl.text("Question: " + counter + "/" + 5);
   if(counter <= 4) {
     generateQuestions (); 
   }
@@ -157,16 +161,17 @@ function startCounter () {
     displayScoreBoard ();
   }
     if (counter > 5) {
-      counter = 5;
-    counterEl.innerText = "Question: " + counter + "/" + 5;
+        counter = 5;
     } 
 }
+
 
 // Start Quiz Function, after start button is pressed
 function displayScoreBoard () {
   scoreboardContainer.removeClass('hidden');
   quizStartedContainer.addClass('hidden');
 }
+
 
 function highScores (event) {
   event.preventDefault ();
@@ -181,6 +186,7 @@ function highScores (event) {
   localStorage.setItem("highScoresEl", JSON.stringify(highScoresEl));
 };
 
+
 function addInitals (event) {
   event.preventDefault ();
   const initalValue = inputInitalEl.val();
@@ -192,6 +198,7 @@ function addInitals (event) {
   localStorageLoop ();
 }
 
+
 function localStorageLoop () {
   while(localStorage.length < 5) {
     const initalValue = localStorage.initalValue(i);
@@ -199,6 +206,8 @@ function localStorageLoop () {
     highScoreEl.innerText += `${initalValue}: ${scoreValue}`;
   }
 }
+
+
 
 
 
@@ -226,6 +235,7 @@ answerEl.forEach(option => {
         choosenOption.parentElement.classList.remove('correct');
         choosenOption.parentElement.classList.remove('incorrect');
         generateQuestions ();
+        startCounter(counter++);
       }, 300);
   });
 });
