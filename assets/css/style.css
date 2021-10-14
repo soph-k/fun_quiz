@@ -134,10 +134,10 @@ nav a:hover, a:active {
   background-size: cover;
   display: flex;
   flex-direction: column;
-
 }
 
 .main_container {
+  margin-top: 3em;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -357,18 +357,13 @@ footer a:hover, a:active {
     display:none;
   }
 
-  #about {
-    height: 60em;
+  .main_container {
+    margin-top: 0em;
   }
 
-  .about_container_main {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .about_container_section {
-    width: 100%;
-    margin: 1.5em 0;
+  .quiz_background {
+    margin: 0 auto;
+    padding: 0;
   }
 
   footer{

@@ -19,12 +19,12 @@ const startButtonEl = $(".start_btn")
 // Quiz Started 
 const quizStartedContainer = $(".started_container");
 const infoContainer = $(".info_container");
-const timerEl = $(".timer");
+var timerEl = $(".timer");
 const scoreboardEl = $(".score");
 const counterEl = $(".counter");
 
 // Quiz Selector
-const questionEl = $(".question");
+var questionEl = $(".question");
 const answerContainer = $(".answer_container");
 const answerEl = Array.from(document.getElementsByClassName("answer_button"));
 

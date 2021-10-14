@@ -1,16 +1,4 @@
-  _____      ______      __       ____       ____       _
-||     \\   | _____|    //\\     | ___\\   / ____|    // \\
-||      \\  ||__       //  \\    ||    || | |___    / /   \ \
-||       || | __|     //____\\   ||___//   \ ____\ | |     | |
-||      //  ||_____  //      \\  || \\     _____ || \ \   / /
-||_____//   |______|//        \\ ||   \\  |_____ /    \\_//
-
-Author: DearSO
-GitHub: https://github.com/soph-k
-Description: Sophk_Fun_Quiz
-
-# sophk_fun_quiz
-    Created a fun simple quiz from basic javascript css and html.
+# Sophk Fun Quiz
 
 
 # Fun Quiz 
@@ -19,23 +7,24 @@ Description: Sophk_Fun_Quiz
     include naviagtion bar, timer, scoreboard, and score based on correct and incorrect answers. 
 
 
-# Authors
+## Authors
+`
+   - Author: Sophia
+   - GitHub: [soph-k](https://github.com/soph-k)
+   - Version 1.1
 
-    Sophia Kiani 
-    Version 1.1
+
+##  Link to Deployed Page
+`
+    [Live Demo](https://soph-k.github.io/sophk_fun_quiz/)
 
 
 # Screen Shot
 `
-    ![Preview Of Sophk Fun Quiz webpage](./assets/images/sophk_fun_quiz_screenshot.png)
+    ![Preview Of Sophk Fun Quiz Webpage](assets/images/screenshot.png)
 
-    
-# Link
+
+## Link to Repo Page
 `
-    [Check out Sophk Fun Quiz webpage...](https://soph-k.github.io/sophk_fun_quiz/)
-    [Or check out the GitHub repository for the Sophk Fun Quiz webpage](https://github.com/soph-k/sophk_fun_quiz/) 
-    
- 
-# Bugs
+    [Repo](https://github.com/soph-k/sophk_fun_quiz/) 
 
-    There are currently no known bugs within this file.
