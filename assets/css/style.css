@@ -172,10 +172,12 @@ nav a:hover, a:active {
 }
 
 .welcome_container {
+  height: 33em;
   justify-content: center;
   height: 100%;
   text-align: center;
   align-items: center;
+  
 }
 
 .welcome {
@@ -185,6 +187,9 @@ nav a:hover, a:active {
   line-height: 2;
 }
 
+.start {
+  margin-top: 10em;
+}
 
 .start_btn, .restart_btn {
   font-size: 1.2em;
@@ -216,10 +221,11 @@ nav a:hover, a:active {
   font-weight:600;
 }
 
-#question_container {
+.question_container {
   display:flex;
   bottom: 0;
   margin: 2em 1em 0em;
+  justify-content: center;
 }
 
 .question_prefix {
@@ -364,6 +370,10 @@ footer a:hover, a:active {
   .quiz_background {
     margin: 0 auto;
     padding: 0;
+  }
+
+  .start {
+    margin-top: 1em;
   }
 
   footer{

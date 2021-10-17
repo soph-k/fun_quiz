@@ -24,7 +24,7 @@ const scoreboardEl = $(".score");
 const counterEl = $(".counter");
 
 // Quiz Selector
-var questionEl = $(".question");
+const questionEl = $(".question");
 const answerContainer = $(".answer_container");
 const answerEl = Array.from(document.getElementsByClassName("answer_button"));
 
@@ -44,9 +44,13 @@ const inputInitalEl = $("#enter_initals");
 const submitBtn = $("#submit_btn");
 const highScoreEl = $("#highscore_output");
 
+const finalTimeEl = $(".final_time");
+const finalCounterEl = $(".final_counter");
+const finalScoreEl = $(".final_score");
+
 // Global Variables
 let score = 0;
-let counter = 0
+let counter = 1;
 let timeRemaining = 80;
 
 
@@ -100,16 +104,18 @@ let questions = [
 ];
 
 // Question Variables
-const questionArray = [... questions]; 
+var questionArray = []; 
 let currentQuestion;
+let nextQuestion = false;
 
 
 ///////////////////////////////// Functions ////////////////////////////
 // Start Quiz Function, after start button is pressed
 function startQuiz () {
   score = 0;
-  counter = 0;
+  counter = 1;
   timeRemaining = 80;
+  questionArray = [...questions]; 
   quizStartedContainer.removeClass('hidden');
   welcomeContainer.addClass('hidden');
   scoreboardContainer.addClass('hidden')
@@ -130,6 +136,7 @@ function generateQuestions () {
     option.innerText = currentQuestion['option'+ answerNumber];
   });
   questionArray.splice[shuffledQuestions, 1]
+  answerEl.forEach(choosenAnswer => choosenAnswer.removeAttribute('disabled', false));
 }
 
 
@@ -148,13 +155,13 @@ function startTimer () {
     timerEl.textContent = "Timer: " + timeRemaining
     clearInterval(timerInterval);
     displayScoreBoard();
-  }}, 1000);
+  }}, 1500);
 }
 
 
 function startCounter () {
   counterEl.text("Question: " + counter + "/" + 5);
-  if(counter <= 4) {
+  if(counter <= 5) {
     generateQuestions (); 
   }
   else {
@@ -170,6 +177,14 @@ function startCounter () {
 function displayScoreBoard () {
   scoreboardContainer.removeClass('hidden');
   quizStartedContainer.addClass('hidden');
+  const finalTime = 80 - timeRemaining; 
+  
+  finalScoreEl.text("Score: " + score);
+  finalTimeEl.text("Time: " + finalTime);
+  if (counter > 5) {
+    counter = 5;
+    finalCounterEl.text("Question: " + counter + "/" + 5);
+  } 
 }
 
 
@@ -184,7 +199,7 @@ function highScores (event) {
   highScoresEl.splice(15);
 
   localStorage.setItem("highScoresEl", JSON.stringify(highScoresEl));
-};
+}
 
 
 function addInitals (event) {
@@ -218,7 +233,7 @@ answerEl.forEach(option => {
   option.addEventListener('click', event => {
     const choosenOption = event.target;
     const choosenAnswer = choosenOption.dataset['number'];
-
+    answerEl.forEach(choosenAnswer => choosenAnswer.setAttribute('disabled', true));
       if(choosenAnswer == currentQuestion.answer) {
         choosenOption.parentElement.classList.add('correct');
         startScoreBoard (score += 15);  
@@ -236,7 +251,8 @@ answerEl.forEach(option => {
         choosenOption.parentElement.classList.remove('incorrect');
         generateQuestions ();
         startCounter(counter++);
-      }, 300);
+      }, 1000);
+
   });
 });
 

@@ -8,7 +8,6 @@
 
 
 ## Authors
-`
    - Author: Sophia
    - GitHub: [soph-k](https://github.com/soph-k)
    - Version 1.1
@@ -22,6 +21,15 @@
 # Screen Shot
 `
     ![Preview Of Sophk Fun Quiz Webpage](assets/images/screenshot.png)
+
+
+# Features
+
+    - HTML 
+    - CSS 
+    - Javascript 
+    - JQuery 
+    - Bootstrap
 
 
 ## Link to Repo Page
