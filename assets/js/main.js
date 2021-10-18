@@ -30,23 +30,21 @@ const answerEl = Array.from($(".answer_button"));
 
 // Scoreboard Container
 const scoreboardContainer = $(".scoreboard_container");
-const restartButtonEl = $(".restart_btn");
-// const enterInitalEl = document.querySelector();
-// const saveButtonEl = document.querySelector();
-// const finalScoreEl = document.querySelector("")
-// const finalScoreStorage = localStorage.getItem("finalScoreStorage");
-const highScoresEl = JSON.parse(localStorage.getItem("highScores")) || [];
-// const addScore = { scores: lastScore, name: username.value };
-
-
-const inputInitalEl = $("#enter_initals");
-// const inputScoreEl = $(".");
-const submitBtn = $("#submit_btn");
-const highScoreEl = $("#highscore_output");
-
 const finalTimeEl = $(".final_time");
 const finalCounterEl = $(".final_counter");
 const finalScoreEl = $(".final_score");
+const submitBtn = $(".submit_btn");
+const inputInitalEl = $("#enter_initals");
+// const initalValue = inputInitalEl.val();
+// const scoreValue = finalScoreEl.val();
+// const finalScoreStorage = localStorage.getItem("highScoresStorage");
+const highScoreStorage = JSON.parse(localStorage.getItem("highScores")) || [];
+const displayHighScore = $(".highscore_output")
+// const addScore = { scores: lastScore, name: username.value };
+const restartButtonEl = $(".restart_btn");
+
+
+
 
 // Global Variables
 let score = 0;
@@ -55,7 +53,7 @@ let timeRemaining = 80;
 
 
 // Question Array
-let questions = [
+const questions = [
   { 
     question: "What is the most common first name in the world?",
     option1: "Peter",
@@ -128,16 +126,22 @@ function startQuiz () {
 // Start Quiz Function, after start button is pressed
 function generateQuestions () {
   startCounter ();
-  questionArray = [...questions];
-  const shuffledQuestions = Math.floor(Math.random() * questionArray.length);
-  currentQuestion = questionArray[shuffledQuestions];
-  questionEl.text(currentQuestion.question);
-  answerEl.forEach(option => {
-    const answerNumber = option.dataset['number'];
-    option.innerText = currentQuestion['option'+ answerNumber];
-  });
-  questions.splice(shuffledQuestions, 1)
-  answerEl.forEach(choosenAnswer => choosenAnswer.removeAttribute('disabled', false));
+  if(counter >= 6) {
+    clearInterval(counter);
+    displayScoreBoard ();
+  }
+  else {
+    questionArray = [...questions];
+    const shuffledQuestions = Math.floor(Math.random() * questionArray.length);
+    currentQuestion = questionArray[shuffledQuestions];
+    questionEl.text(currentQuestion.question);
+    answerEl.forEach(option => {
+      const answerNumber = option.dataset['number'];
+      option.innerText = currentQuestion['option'+ answerNumber];
+    });
+    questions.splice(shuffledQuestions, 1)
+    answerEl.forEach(choosenAnswer => choosenAnswer.removeAttribute('disabled', false));
+}
 }
 
 
@@ -162,12 +166,8 @@ function startTimer () {
 function startCounter () {
   counter++
   counterEl.text("Question: " + counter + "/" + 5);
-  if(counter >= 6) {
-    clearInterval(counter);
-    displayScoreBoard ();
-  }
-}
 
+}
 
 
 function displayScoreBoard () {
@@ -184,6 +184,18 @@ function displayScoreBoard () {
 }
 
 
+function submitInitals (event) {
+  event.preventDefault ();
+  if (inputInitalEl.val() === "") {
+    submitBtn.disabled = true;
+  }
+  else {
+    submitBtn.disabled = false;
+    submitBtn.click(saveHighScore);
+  }
+}
+
+
 function clearResults () {
   location.reload();                                                                       //
   generateQuestions ();                                                                    // Start Quiz Function, after start button is pressed
@@ -192,31 +204,25 @@ function clearResults () {
 
 function saveHighScore (event) {
   event.preventDefault ();
-}
-
-function highScores (event) {
-  event.preventDefault ();
-
-  finalScoreEl.innerText = finalScoreStorage;
-
-  addScore;
-
-  highScoresEl.sort((a,b) => b.score - a.score)
-  highScoresEl.splice(15);
-
-  localStorage.setItem("highScoresEl", JSON.stringify(highScoresEl));
-}
-
-
-function addInitals (event) {
-  event.preventDefault ();
-  const initalValue = inputInitalEl.val();
-  const scoreValue = inputScoreEl.val();
-
-  if (initalValue && scoreValue) {
-    localStorage.setItem()
+  const highScoreArray = {
+    name: inputInitalEl.val(),
+    score: savedScore,
   }
-  localStorageLoop ();
+  highScoreStorage.push(highScoreArray);
+  highScoreStorage.sort(function (a, b) {
+    return b.score - a.score
+  })
+  highScoreStorage.splice(5);
+  localStorage.setItem("highScoresStorage", JSON.stringify(highScoreStorage));
+  console.log(highScoreStorage);
+  retriveHighScore ();
+}
+
+
+function retriveHighScore () {
+  highScoreStorage.map(function(highScoreStorage){
+    return displayHighScore.text( highScoreStorage.name - highScoreStorage.scoreValue)
+  })
 }
 
 
@@ -229,13 +235,11 @@ function localStorageLoop () {
 }
 
 
-
-
-
 // Evernt Listeners
 startButtonEl.click(startQuiz);
 
-answerEl.forEach(option => {
+
+answerEl.forEach(function (option) {
   option.addEventListener('click', event => {
     const choosenOption = event.target;
     const choosenAnswer = choosenOption.dataset['number'];
@@ -252,15 +256,10 @@ answerEl.forEach(option => {
         choosenOption.parentElement.classList.remove('correct');
         choosenOption.parentElement.classList.remove('incorrect');
         generateQuestions ();
-
       }, 1000);
   });
 });
 
-inputInitalEl.keyU
-
-
-submitBtn.click(localStorageLoop);
 
 restartButtonEl.click(clearResults);
 
