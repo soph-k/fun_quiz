@@ -24,9 +24,9 @@ const scoreboardEl = $(".score");
 const counterEl = $(".counter");
 
 // Quiz Selector
-const questionEl = $(".question");
+var questionEl = $(".question");
 const answerContainer = $(".answer_container");
-const answerEl = Array.from(document.getElementsByClassName("answer_button"));
+const answerEl = Array.from($(".answer_button"));
 
 // Scoreboard Container
 const scoreboardContainer = $(".scoreboard_container");
@@ -35,7 +35,7 @@ const restartButtonEl = $(".restart_btn");
 // const saveButtonEl = document.querySelector();
 // const finalScoreEl = document.querySelector("")
 // const finalScoreStorage = localStorage.getItem("finalScoreStorage");
-// const highScoresEl = JSON.parse(localStorage.getItem("highScores")) || [];
+const highScoresEl = JSON.parse(localStorage.getItem("highScores")) || [];
 // const addScore = { scores: lastScore, name: username.value };
 
 
@@ -107,27 +107,28 @@ let questions = [
 var questionArray = []; 
 let currentQuestion;
 let nextQuestion = false;
+let questionIndex = 0;
 
 
 ///////////////////////////////// Functions ////////////////////////////
 // Start Quiz Function, after start button is pressed
 function startQuiz () {
   score = 0;
-  counter = 1;
+  counter = 0;
   timeRemaining = 80;
-  questionArray = [...questions]; 
   quizStartedContainer.removeClass('hidden');
   welcomeContainer.addClass('hidden');
   scoreboardContainer.addClass('hidden')
   generateQuestions ();
   startTimer ();
   startScoreBoard (); 
-  startCounter ();
 }
 
 
 // Start Quiz Function, after start button is pressed
 function generateQuestions () {
+  startCounter ();
+  questionArray = [...questions];
   const shuffledQuestions = Math.floor(Math.random() * questionArray.length);
   currentQuestion = questionArray[shuffledQuestions];
   questionEl.text(currentQuestion.question);
@@ -135,7 +136,7 @@ function generateQuestions () {
     const answerNumber = option.dataset['number'];
     option.innerText = currentQuestion['option'+ answerNumber];
   });
-  questionArray.splice[shuffledQuestions, 1]
+  questions.splice(shuffledQuestions, 1)
   answerEl.forEach(choosenAnswer => choosenAnswer.removeAttribute('disabled', false));
 }
 
@@ -152,7 +153,6 @@ function startTimer () {
   timerEl.text("Timer: " + timeRemaining);
   if (timeRemaining <= 0) {
     timeRemaining = 0;
-    timerEl.textContent = "Timer: " + timeRemaining
     clearInterval(timerInterval);
     displayScoreBoard();
   }}, 1500);
@@ -160,20 +160,16 @@ function startTimer () {
 
 
 function startCounter () {
+  counter++
   counterEl.text("Question: " + counter + "/" + 5);
-  if(counter <= 5) {
-    generateQuestions (); 
-  }
-  else {
+  if(counter >= 6) {
+    clearInterval(counter);
     displayScoreBoard ();
   }
-    if (counter > 5) {
-        counter = 5;
-    } 
 }
 
 
-// Start Quiz Function, after start button is pressed
+
 function displayScoreBoard () {
   scoreboardContainer.removeClass('hidden');
   quizStartedContainer.addClass('hidden');
@@ -181,12 +177,22 @@ function displayScoreBoard () {
   
   finalScoreEl.text("Score: " + score);
   finalTimeEl.text("Time: " + finalTime);
-  if (counter > 5) {
+  if (counter > 6) {
     counter = 5;
     finalCounterEl.text("Question: " + counter + "/" + 5);
   } 
 }
 
+
+function clearResults () {
+  location.reload();                                                                       //
+  generateQuestions ();                                                                    // Start Quiz Function, after start button is pressed
+}
+
+
+function saveHighScore (event) {
+  event.preventDefault ();
+}
 
 function highScores (event) {
   event.preventDefault ();
@@ -241,22 +247,20 @@ answerEl.forEach(option => {
       else {
         choosenOption.parentElement.classList.add('incorrect');
         startTimer (timeRemaining -= 15);
-        if (timeRemaining < 0) {
-          timeRemaining = 0;
-          displayScoreBoard ();
-        }
       }
       setTimeout(() => {
         choosenOption.parentElement.classList.remove('correct');
         choosenOption.parentElement.classList.remove('incorrect');
         generateQuestions ();
-        startCounter(counter++);
-      }, 1000);
 
+      }, 1000);
   });
 });
 
-restartButtonEl.click(startQuiz);
+inputInitalEl.keyU
+
 
 submitBtn.click(localStorageLoop);
+
+restartButtonEl.click(clearResults);
 

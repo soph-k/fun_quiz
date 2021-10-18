@@ -104,7 +104,7 @@ Description: sophk_fun_quiz
             <form class="submit_form">
               <label for="enter_initals">Please enter your initals to save your score.</label><br>
               <input type="text" id="enter_initals" name="enter_initals" placeholder="Initals" value=""><br>
-              <input type="submit" value="Save" id="submit_btn">
+              <input type="submit" value="Save" id="submit_btn" onclick="saveHighScore(event)" disabled>
             </form>
             <fieldset>
               <label>
@@ -113,8 +113,8 @@ Description: sophk_fun_quiz
                 </div>
               </label>
             </fieldset>
-            <div class="restart">
-              <button class="restart_btn btn_hover">Play Again</button>
+            <form class="restart">
+              <button type="reset" value="Play Again" id="restart_btn" class="restart_btn btn_hover">Play Again</button>
             </div>
           </div>
         </div>
