@@ -36,3 +36,8 @@
 `
     [Repo](https://github.com/soph-k/sophk_fun_quiz/) 
 
+
+### Bugs 
+    - When clicking on a selection a very ugly outline is displayed for one second.
+
+    - Local storage is a joke... does not exist in this script. It is the true definition of bug.
