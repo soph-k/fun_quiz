@@ -35,22 +35,17 @@ const finalCounterEl = $(".final_counter");
 const finalScoreEl = $(".final_score");
 const submitBtn = $(".submit_btn");
 const inputInitalEl = $("#enter_initals");
+const displayHighScore = $(".highscore_output");
+const highScoreEl = Array.from($(".hs_list_value"));
+const restartButtonEl = $(".restart_btn");
 // const initalValue = inputInitalEl.val();
 // const scoreValue = finalScoreEl.val();
-// const finalScoreStorage = localStorage.getItem("highScoresStorage");
-const highScoreStorage = JSON.parse(localStorage.getItem("highScores")) || [];
-const displayHighScore = $(".highscore_output")
-// const addScore = { scores: lastScore, name: username.value };
-const restartButtonEl = $(".restart_btn");
 
 
-
-
-// Global Variables
+// Information Containter
 let score = 0;
-let counter = 1;
+let counter = 0;
 let timeRemaining = 80;
-
 
 // Question Array
 const questions = [
@@ -104,8 +99,6 @@ const questions = [
 // Question Variables
 var questionArray = []; 
 let currentQuestion;
-let nextQuestion = false;
-let questionIndex = 0;
 
 
 ///////////////////////////////// Functions ////////////////////////////
@@ -126,7 +119,7 @@ function startQuiz () {
 // Start Quiz Function, after start button is pressed
 function generateQuestions () {
   startCounter ();
-  if(counter >= 6) {
+  if(counter > 5) {
     clearInterval(counter);
     displayScoreBoard ();
   }
@@ -150,7 +143,7 @@ function startScoreBoard () {
 }
 
 
-// Start Quiz Function, after start button is pressed
+
 function startTimer () {
   let timerInterval = setInterval(function () {
   timeRemaining--;
@@ -177,7 +170,8 @@ function displayScoreBoard () {
   
   finalScoreEl.text("Score: " + score);
   finalTimeEl.text("Time: " + finalTime);
-  if (counter > 6) {
+  
+  if (counter >= 6) {
     counter = 5;
     finalCounterEl.text("Question: " + counter + "/" + 5);
   } 
@@ -191,8 +185,32 @@ function submitInitals (event) {
   }
   else {
     submitBtn.disabled = false;
-    submitBtn.click(saveHighScore);
+    saveHighScore ();
+    
   }
+}
+
+function saveHighScore (event) {
+  event.preventDefault ();
+  const highScore = {
+    hsname: inputInitalEl.val(),
+    hsscore: score
+  }
+  localStorage.setItem("highScoresDB", `[]`);
+  const oldScores = JSON.parse(localStorage.getItem("highScoresDB")) || [];
+  oldScores.push(highScore);
+  oldScores.sort(function (a, b) {
+    return b.score - a.score
+  })
+  oldScores.splice(5);
+  localStorage.setItem("highScoresDB", JSON.stringify(oldScores));
+
+  displayHighScore.text(oldScores.
+  map(highScoreArray => {
+    return `<li class="highscore_output">${highScoreArray.hsname} - ${highScoreArray.hsscore}</li>`;
+  }))
+  .join("");
+  console.log(displayHighScore.innerText)
 }
 
 
@@ -202,43 +220,14 @@ function clearResults () {
 }
 
 
-function saveHighScore (event) {
-  event.preventDefault ();
-  const highScoreArray = {
-    name: inputInitalEl.val(),
-    score: savedScore,
-  }
-  highScoreStorage.push(highScoreArray);
-  highScoreStorage.sort(function (a, b) {
-    return b.score - a.score
-  })
-  highScoreStorage.splice(5);
-  localStorage.setItem("highScoresStorage", JSON.stringify(highScoreStorage));
-  console.log(highScoreStorage);
-  retriveHighScore ();
-}
 
+/////////////////////////////////// Evernt Listeners ////////////////////////////
 
-function retriveHighScore () {
-  highScoreStorage.map(function(highScoreStorage){
-    return displayHighScore.text( highScoreStorage.name - highScoreStorage.scoreValue)
-  })
-}
-
-
-function localStorageLoop () {
-  while(localStorage.length < 5) {
-    const initalValue = localStorage.initalValue(i);
-    const scoreValue = localStorage.getItem(initalValue);
-    highScoreEl.innerText += `${initalValue}: ${scoreValue}`;
-  }
-}
-
-
-// Evernt Listeners
+// Start Quiz Function, after start button is pressed
 startButtonEl.click(startQuiz);
 
 
+// Start Quiz Function, after start button is pressed
 answerEl.forEach(function (option) {
   option.addEventListener('click', event => {
     const choosenOption = event.target;
@@ -261,5 +250,9 @@ answerEl.forEach(function (option) {
 });
 
 
-restartButtonEl.click(clearResults);
+// Start Quiz Function, after start button is pressed
+submitBtn.click(saveHighScore);
 
+
+// Clear Results Function, after restart button is pressed
+restartButtonEl.click(clearResults);

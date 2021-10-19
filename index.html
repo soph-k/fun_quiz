@@ -97,23 +97,40 @@ Description: sophk_fun_quiz
               Congraulations! You have completed the quiz.
             </div>
             <div class="scorboard_score">
-              <div class="final_time">Value</div>
-              <div class="final_counter">Value</div>
-              <div class="final_score">Value</div>
+              <div class="final_time scorboard_items">Value</div>
+              <div class="final_counter scorboard_items">Value</div>
+              <div class="final_score scorboard_items">Value</div>
             </div>
             <form class="submit_form">
-              <label for="enter_initals">Please enter your initals to save your score.</label><br>
+              <label for="enter_initals" class="enter_initals_title">Please enter your initals to save your score.</label><br>
               <input type="text" id="enter_initals" name="enter_initals" placeholder="Initals" value=""><br>
               <button type="submit" class="submit_btn">Submit</button>
             </form>
-            <fieldset>
-              <label>
-                <div class="highscore_output">
-
-                </div>
-              </label>
-            </fieldset>
-            <form class="restart">
+            <div class="highscore_container">
+              <div class="question_container">HighScores</div>
+              <ul class="highscore_output"></ul>
+            </div>
+              <!-- <div class="hs_list_container">
+                <p class="hs_prefix">1. </p>
+                <p class="hs_list_value" data-list="1"></p>
+              </div>
+              <div class="hs_list_container">
+                <p class="hs_prefix">2. </p>
+                <p class="hs_list_value" data-lis="2"></p>
+              </div>
+              <div class="hs_list_container">
+                <p class="hs_prefix">3. </p>
+                <p class="hs_list_value" data-list="3"></p>
+              </div>
+              <div class="hs_list_container">
+                <p class="hs_prefix">4. </p>
+                <p class="hs_list_value" data-list="4"></p>
+              </div>
+              <div class="hs_list_container">
+                <p class="hs_prefix">5. </p>
+                <p class="hs_list_value" data-list="5"></p>
+              </div>    -->
+            <div class="restart">
               <button type="reset" value="Play Again" id="restart_btn" class="restart_btn btn_hover">Play Again</button>
             </div>
           </div>

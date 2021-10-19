@@ -200,9 +200,10 @@ nav a:hover, a:active {
   border-bottom: 4px black solid;
 }
 
-.btn_hover:hover {
+.btn_hover:hover  {
   box-shadow: 0 0 11px rgba(0, 0, 0, 0.801);
-  cursor: pointer;
+  cursor: grab;
+  outline: none;
 }
 
 .info_container {
@@ -210,22 +211,19 @@ nav a:hover, a:active {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  font-size: 1.1em;
+  border-bottom: 1px black solid;
+  padding:.7em;
+  font-weight:200;
 }
 
-.timer .counter .score {
-  font-size: 1.2em;
-  width: 33.3%;
-  justify-content: center;
-  border-radius: 10%;
-  border-bottom: 4px black solid;
-  font-weight:600;
-}
 
 .question_container {
   display:flex;
   bottom: 0;
-  margin: 2em 1em 0em;
+  margin: 2em auto 0em;
   justify-content: center;
+  padding: 1em 2em;
 }
 
 .question_prefix {
@@ -233,18 +231,23 @@ nav a:hover, a:active {
   flex-wrap: wrap;
   width: 25%;
   font-size: 1.5em;
-  font-weight: 700;
+  font-weight: 100;
   align-content: center;
   justify-content: flex-end;
+  text-decoration: underline;
 }
 
 .question {
   flex-direction: column;
   flex-wrap:wrap;
   width: 75%;
-  justify-content: flex-start;
-  align-content: center;
+  justify-content: center;
+  align-content: top;
   font-size: 1.4em;
+}
+
+.quiz_container{
+  padding: 0 1em;
 }
 
 .answer_container {
@@ -254,11 +257,13 @@ nav a:hover, a:active {
   padding: 0em 1em;
   border-radius: 10px;
   border-bottom: 3px black solid;
-  width: 90%;
-  text-align:left;
   height: 3em;
   margin:1em.7em;
   align-items: center;
+}
+
+.answer_button:hover {
+  cursor: grab;
 }
 
 .answer_button {
@@ -268,6 +273,13 @@ nav a:hover, a:active {
   font-size: 1em;
   background-color: transparent;
 }
+
+.answer_button:active {
+  border: none;
+  outline: none;
+  cursor: grab;
+}
+
 
 .correct {
   background-color: rgb(20, 220, 153);
@@ -286,16 +298,71 @@ nav a:hover, a:active {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1em;
-
+  padding: 1em 2em;
 }
+
 .final_message {
-  padding: 0 auto 2em;
-  font-size: 1.6em;
+  display: flex;
+  justify-content: center;
+  padding: .5 auto 2em;
+  font-size: 1.4em;
+  margin-bottom: 1em;
+}
+
+.scorboard_score {
+  display: flex;
+  justify-content: center;
+  padding: 0 2em;
+}
+
+.scorboard_items {
+  justify-content: space-between;
+  padding: 1em 3em;
+  font-size: 1em;
+}
+
+.submit_form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.enter_initals_title {
+  margin: .8em auto;
+  width: 100%;
+  font-size: 1em;
+  text-align: center;
+}
+
+#enter_initals {
+  border-radius: 15px;
+  border-bottom: 4px black solid;
+  width: 50%;
+}
+
+.submit_btn {
+  font-size: 1.2em;
+  background-color: rgba(255, 255, 255, 0.959);
+  padding: .3em;
+  width: 20%;
+  border-radius: 15px;
+  border-bottom: 4px black solid;
+}
+
+.highscore_output{
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
   margin-bottom: 2em;
 }
 
 
+.restart {
+  align-items: flex-end;
+  display: flex;
+  bottom: 0;
+  justify-content: center;
+}
 
 /************************ 6.0 - Footer ********************/
 footer {
@@ -326,11 +393,16 @@ footer a:link, a:visited {
   color: rgb(14, 32, 48);
   text-decoration: none;
   text-align: center;
+  outline: none;
+  border: none;
 }
 
 footer a:hover, a:active {
+  cursor:grab;
   background-color: rgba(255, 255, 255, 0);
   text-decoration: underline black 2px;
+  outline: none;
+  border: none;
 }
 
 
