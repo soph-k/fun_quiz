@@ -33,9 +33,11 @@ const scoreboardContainer = $(".scoreboard_container");
 const finalTimeEl = $(".final_time");
 const finalCounterEl = $(".final_counter");
 const finalScoreEl = $(".final_score");
-const submitBtn = $(".submit_btn");
 const inputInitalEl = $("#enter_initals");
-const displayHighScore = $(".highscore_output");
+let empty = false;
+const submitBtn = $(".submit_btn");
+const oldScores = JSON.parse(localStorage.getItem("highScoresDB")) || [];
+const displayHighScore = $(".highscore_output_ol");
 const highScoreEl = Array.from($(".hs_list_value"));
 const restartButtonEl = $(".restart_btn");
 // const initalValue = inputInitalEl.val();
@@ -134,9 +136,29 @@ function generateQuestions () {
     });
     questions.splice(shuffledQuestions, 1)
     answerEl.forEach(choosenAnswer => choosenAnswer.removeAttribute('disabled', false));
-}
+  } 
 }
 
+answerEl.forEach(function (option) {
+  option.addEventListener('click', event => {
+    const choosenOption = event.target;
+    const choosenAnswer = choosenOption.dataset['number'];
+    answerEl.forEach(choosenAnswer => choosenAnswer.setAttribute('disabled', true));
+      if(choosenAnswer == currentQuestion.answer) {
+        choosenOption.parentElement.classList.add('correct');
+        startScoreBoard (score += 15);  
+      }
+      else {
+        choosenOption.parentElement.classList.add('incorrect');
+        startTimer (timeRemaining -= 15);
+      }
+      setTimeout(() => {
+        choosenOption.parentElement.classList.remove('correct');
+        choosenOption.parentElement.classList.remove('incorrect');
+        generateQuestions ();
+      }, 1000);
+  });
+});
 
 function startScoreBoard () {
   scoreboardEl.text("Score: " + score);
@@ -167,91 +189,81 @@ function displayScoreBoard () {
   scoreboardContainer.removeClass('hidden');
   quizStartedContainer.addClass('hidden');
   const finalTime = 80 - timeRemaining; 
-  
   finalScoreEl.text("Score: " + score);
   finalTimeEl.text("Time: " + finalTime);
-  
   if (counter >= 6) {
     counter = 5;
     finalCounterEl.text("Question: " + counter + "/" + 5);
   } 
+  highscores ();
 }
 
 
 function submitInitals (event) {
-  event.preventDefault ();
-  if (inputInitalEl.val() === "") {
-    submitBtn.disabled = true;
-  }
-  else {
-    submitBtn.disabled = false;
-    saveHighScore ();
-    
-  }
+  event.preventDefault();
+  // $(document).ready(function() {
+    // inputInitalEl.on('keyup', function() {
+      // inputInitalEl.each(function() {
+      //  empty = inputInitalEl.val().length === "";
+      // })
+      let a = inputInitalEl.val() 
+      console.log('data', a)
+      if (a === undefined) {
+        submitBtn.attr('disabled', true);
+      }
+      else {
+        submitBtn.attr('disabled', false);
+      }
+    // });
+  // });
+  saveHighScore ();
 }
+  
+
 
 function saveHighScore (event) {
-  event.preventDefault ();
   const highScore = {
     hsname: inputInitalEl.val(),
     hsscore: score
   }
-  localStorage.setItem("highScoresDB", `[]`);
-  const oldScores = JSON.parse(localStorage.getItem("highScoresDB")) || [];
   oldScores.push(highScore);
   oldScores.sort(function (a, b) {
-    return b.score - a.score
+    return b.hsscore - a.hsscore
   })
-  oldScores.splice(5);
-  localStorage.setItem("highScoresDB", JSON.stringify(oldScores));
-
-  displayHighScore.text(oldScores.
-  map(highScoreArray => {
-    return `<li class="highscore_output">${highScoreArray.hsname} - ${highScoreArray.hsscore}</li>`;
-  }))
-  .join("");
-  console.log(displayHighScore.innerText)
+  let result = oldScores.splice(5);
+  localStorage.setItem("highScoresDB", JSON.stringify(result));
+  console.log(result);
 }
 
 
+function highscores () {
+  displayHighScore.text(oldScores.
+    map(highScoreArray => {
+      return `${highScoreArray.hsname}: ${highScoreArray.hsscore}`;
+    })
+    .join(""));
+}
+
 function clearResults () {
-  location.reload();                                                                       //
-  generateQuestions ();                                                                    // Start Quiz Function, after start button is pressed
+  location.reload();                                                                       
+  generateQuestions ();                                                                   
 }
 
 
 
 /////////////////////////////////// Evernt Listeners ////////////////////////////
-
 // Start Quiz Function, after start button is pressed
 startButtonEl.click(startQuiz);
 
 
 // Start Quiz Function, after start button is pressed
-answerEl.forEach(function (option) {
-  option.addEventListener('click', event => {
-    const choosenOption = event.target;
-    const choosenAnswer = choosenOption.dataset['number'];
-    answerEl.forEach(choosenAnswer => choosenAnswer.setAttribute('disabled', true));
-      if(choosenAnswer == currentQuestion.answer) {
-        choosenOption.parentElement.classList.add('correct');
-        startScoreBoard (score += 15);  
-      }
-      else {
-        choosenOption.parentElement.classList.add('incorrect');
-        startTimer (timeRemaining -= 15);
-      }
-      setTimeout(() => {
-        choosenOption.parentElement.classList.remove('correct');
-        choosenOption.parentElement.classList.remove('incorrect');
-        generateQuestions ();
-      }, 1000);
-  });
-});
+
 
 
 // Start Quiz Function, after start button is pressed
-submitBtn.click(saveHighScore);
+submitBtn.click(submitInitals);
+
+
 
 
 // Clear Results Function, after restart button is pressed

@@ -349,7 +349,7 @@ nav a:hover, a:active {
   border-bottom: 4px black solid;
 }
 
-.highscore_output{
+.highscore_output_ol {
   flex-direction: row;
   justify-content: center;
   text-align: center;
