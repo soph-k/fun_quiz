@@ -1,16 +1,3 @@
-//   _____      ______      __       ____       ____       _
-// ||     \\   | _____|    //\\     | ___\\   / ____|    // \\
-// ||      \\  ||__       //  \\    ||    || | |___    / /   \ \
-// ||       || | __|     //____\\   ||___//   \ ____\ | |     | |
-// ||      //  ||_____  //      \\  || \\     _____ || \ \   / /
-// ||_____//   |______|//        \\ ||   \\  |_____ /    \\_//
-
-// Author: DearSO
-// GitHub: https://github.com/soph-k
-// Description: Sophk_Fun_Quiz
-
-
-
 ///////////////////////////////// Selectors ////////////////////////////
 // Welcome 
 const welcomeContainer = $(".welcome_container");
@@ -34,15 +21,11 @@ const finalTimeEl = $(".final_time");
 const finalCounterEl = $(".final_counter");
 const finalScoreEl = $(".final_score");
 const inputInitalEl = $("#enter_initals");
-let empty = false;
 const submitBtn = $(".submit_btn");
 const oldScores = JSON.parse(localStorage.getItem("highScoresDB")) || [];
 const displayHighScore = $(".highscore_output_ol");
-const highScoreEl = Array.from($(".hs_list_value"));
+const highScoreList = $(".highsccore_output_li");
 const restartButtonEl = $(".restart_btn");
-// const initalValue = inputInitalEl.val();
-// const scoreValue = finalScoreEl.val();
-
 
 // Information Containter
 let score = 0;
@@ -139,6 +122,7 @@ function generateQuestions () {
   } 
 }
 
+// Compares answers and provides next question
 answerEl.forEach(function (option) {
   option.addEventListener('click', event => {
     const choosenOption = event.target;
@@ -160,12 +144,12 @@ answerEl.forEach(function (option) {
   });
 });
 
+// Displays Scores
 function startScoreBoard () {
   scoreboardEl.text("Score: " + score);
 }
 
-
-
+// Timer count down
 function startTimer () {
   let timerInterval = setInterval(function () {
   timeRemaining--;
@@ -177,15 +161,15 @@ function startTimer () {
   }}, 1500);
 }
 
-
+// Counter increments
 function startCounter () {
   counter++
   counterEl.text("Question: " + counter + "/" + 5);
-
 }
 
-
-function displayScoreBoard () {
+// Once quiz is completed it displays scoreboard items
+function displayScoreBoard() {
+  submitBtn.disabled = true;
   scoreboardContainer.removeClass('hidden');
   quizStartedContainer.addClass('hidden');
   const finalTime = 80 - timeRemaining; 
@@ -195,33 +179,24 @@ function displayScoreBoard () {
     counter = 5;
     finalCounterEl.text("Question: " + counter + "/" + 5);
   } 
-  highscores ();
+  highscores();
 }
 
-
-function submitInitals (event) {
+// Prevents mulitple resubmissions, empty submission, and page reload.
+function buttonStatus(event) {
   event.preventDefault();
-  // $(document).ready(function() {
-    // inputInitalEl.on('keyup', function() {
-      // inputInitalEl.each(function() {
-      //  empty = inputInitalEl.val().length === "";
-      // })
-      let a = inputInitalEl.val() 
-      console.log('data', a)
-      if (a === undefined) {
-        submitBtn.attr('disabled', true);
-      }
-      else {
-        submitBtn.attr('disabled', false);
-      }
-    // });
-  // });
-  saveHighScore ();
+  if (inputInitalEl.val() == "") {
+    alert("Please enter your initial.")
+    return;
+  }
+  else {
+    saveHighScore(); 
+  }
+  submitBtn.prop('disabled', true);
 }
-  
 
-
-function saveHighScore (event) {
+//Saves top 5 highscores and saves it in local storage
+function saveHighScore () {
   const highScore = {
     hsname: inputInitalEl.val(),
     hsscore: score
@@ -230,20 +205,21 @@ function saveHighScore (event) {
   oldScores.sort(function (a, b) {
     return b.hsscore - a.hsscore
   })
-  let result = oldScores.splice(5);
-  localStorage.setItem("highScoresDB", JSON.stringify(result));
-  console.log(result);
+  oldScores.splice(5);
+  localStorage.setItem("highScoresDB", JSON.stringify(oldScores));
+  highscores();
 }
 
-
-function highscores () {
-  displayHighScore.text(oldScores.
-    map(highScoreArray => {
-      return `${highScoreArray.hsname}: ${highScoreArray.hsscore}`;
+// Takes scores from local stoarage and displays it in highscores list
+function highscores() {
+  displayHighScore.html(oldScores
+    .map(highScoreArray => {
+      return `<li>${highScoreArray.hsname}: ${highScoreArray.hsscore}</li>`;     
     })
-    .join(""));
+  .join(""))
 }
 
+// Refreshes the webpage
 function clearResults () {
   location.reload();                                                                       
   generateQuestions ();                                                                   
@@ -255,16 +231,8 @@ function clearResults () {
 // Start Quiz Function, after start button is pressed
 startButtonEl.click(startQuiz);
 
-
-// Start Quiz Function, after start button is pressed
-
-
-
-// Start Quiz Function, after start button is pressed
-submitBtn.click(submitInitals);
-
-
-
+// Prevents submission unless input field is full
+submitBtn.click(buttonStatus);
 
 // Clear Results Function, after restart button is pressed
 restartButtonEl.click(clearResults);
