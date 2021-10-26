@@ -55,7 +55,7 @@
 
 
 ## Preview
-![Blue Rose Demo](.\assests\images\screenshot.png)
+![Preview](.\assets\images\screenshot.png)
 
     
 ## Link to Deployed Repo
