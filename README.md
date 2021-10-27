@@ -16,10 +16,10 @@
 
 
 ## Overview
-    This file contains basic html, css, and js files for a webpage that 
-    contains 5 short randomized question, 
-    include naviagtion bar, timer, scoreboard, and score based on correct 
-    and incorrect answers. 
+This file contains basic html, css, and js files for a webpage that 
+contains 5 short randomized question, 
+include naviagtion bar, timer, scoreboard, and score based on correct 
+and incorrect answers. 
 
 
 ## Table of Contents
