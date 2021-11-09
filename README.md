@@ -51,7 +51,7 @@ and incorrect answers.
 
 
 ## Link to Deployed Page
-[Demo Live](https://soph-k.github.io/sophk_fun_quiz/)
+[Demo Live](https://soph-k.github.io/fun_quiz/)
 
 
 ## Preview
